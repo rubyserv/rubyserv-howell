@@ -35,7 +35,7 @@ module Howell
   include RubyServ::Plugin
 
   configure do |config|
-    config.nickname = 'howell_'
+    config.nickname = 'howell'
     config.realname = 'howell'
     config.username = 'howell'
   end
