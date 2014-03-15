@@ -30,6 +30,8 @@
 require 'json'
 require 'httparty'
 require 'mysql2'
+require 'oauth'
+require 'uri'
 
 module Howell
   include RubyServ::Plugin
@@ -56,4 +58,5 @@ module Howell
   require_relative 'howell/github'
   require_relative 'howell/codeschool'
   require_relative 'howell/bitcoin'
+  require_relative 'howell/twitter'
 end
