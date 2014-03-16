@@ -13,12 +13,12 @@ module Howell
     m.reply output
   end
 
-  match(/https?:\/\/twitter\.com\/(#!\/)?[_0-9a-zA-Z]+\/status\/(\d+)/, skip_prefix: true) do |m, _, id|
-    m.reply get_last_tweet(id, 0)
-  end
-
-  match(/https?:\/\/twitter\.com\/(#!\/)?([_0-9a-zA-Z]+)/, skip_prefix: true) do |m, _, username|
-    m.reply get_last_tweet(username, 0)
+  match(/https?:\/\/twitter\.com\/(#!\/)?([_0-9a-zA-Z]+)(\/status\/(\d+))?/, skip_prefix: true) do |m, _, username, _, id|
+    if id.nil?
+      m.reply get_last_tweet(username, 0)
+    else
+      m.reply get_last_tweet(id, 0)
+    end
   end
 
   def get_last_tweet(user, nth)
