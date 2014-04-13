@@ -25,13 +25,14 @@
 #  * lastfm is optional, and lastfm commands will not work if there is no lastfm
 #    api key
 #
-# Gems: httparty, json, mysql2
+# Gems: httparty, json, mysql2, oauth, nokogiri
 
 require 'json'
 require 'httparty'
 require 'mysql2'
 require 'oauth'
 require 'uri'
+require 'nokogiri'
 
 module Howell
   include RubyServ::Plugin
@@ -61,3 +62,4 @@ load File.dirname(__FILE__) + '/howell/codeschool.rb'
 load File.dirname(__FILE__) + '/howell/bitcoin.rb'
 load File.dirname(__FILE__) + '/howell/twitter.rb'
 load File.dirname(__FILE__) + '/howell/meme.rb'
+load File.dirname(__FILE__) + '/howell/linkinfo.rb'
