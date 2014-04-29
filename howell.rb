@@ -21,9 +21,12 @@
 #
 #  api_keys:
 #    lastfm:
-#
-#  * lastfm is optional, and lastfm commands will not work if there is no lastfm
-#    api key
+#    google:
+#    twitter:
+#      api_key:
+#      api_secret:
+#      access_token:
+#      access_token_secret:
 #
 # Gems: httparty, json, mysql2, oauth, nokogiri
 
@@ -63,3 +66,4 @@ load File.dirname(__FILE__) + '/howell/bitcoin.rb'
 load File.dirname(__FILE__) + '/howell/twitter.rb'
 load File.dirname(__FILE__) + '/howell/meme.rb'
 load File.dirname(__FILE__) + '/howell/linkinfo.rb'
+load File.dirname(__FILE__) + '/howell/google.rb'
