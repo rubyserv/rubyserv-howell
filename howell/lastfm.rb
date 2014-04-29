@@ -14,9 +14,15 @@ module Howell
       status = 'last track'
     end
 
+    artist       = track['artist']['#text']
+    album        = track['album']['#text']
+    title        = track['name']
+    listen_count = HTTParty.get("http://ws.audioscrobbler.com/2.0/?format=json&method=track.getInfo&api_key=#{RubyServ.config.api_keys.lastfm}&username=#{username.strip}&track=#{URI.escape(title)}&artist=#{URI.escape(artist)}")['track']['userplaycount']
+
     ret = "\x02#{username}\x0F's #{status} - \x02#{track['name']}\x0f"
-    ret += " by \x02#{track['artist']['#text']}\x0f" unless track['artist']['#text'].empty?
-    ret += " on \x02#{track['album']['#text']}\x0f" unless track['album']['#text'].empty?
+    ret += " by \x02#{artist}\x0f" unless artist.empty?
+    ret += " on \x02#{album}\x0f" unless album.empty?
+    ret += " - listened to \x02#{listen_count}\x0f times" unless listen_count.nil?
 
     m.reply ret
   end
