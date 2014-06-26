@@ -59,4 +59,5 @@ module Howell
   require_relative 'howell/codeschool'
   require_relative 'howell/bitcoin'
   require_relative 'howell/twitter'
+  require_relative 'howell/worldcup'
 end
