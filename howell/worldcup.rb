@@ -9,20 +9,29 @@ module Howell
       m.reply "Today's World Cup matches:"
 
       today.each do |match|
-        out  = "##{match['match_number']} - "
-        out += "#{match['home_team']['country']} (#{match['home_team']['code']}) vs. #{match['away_team']['country']} (#{match['away_team']['code']})"
-        out += "in #{match['location']} "
-        out += "at #{match['datetime']} "
-        out += "- Score: #{match['home_team']['goals']}-#{match['away_team']['goals']}" if match['status'] != 'future'
-
-        m.reply out
+        m.reply match_output(match)
       end
     when 'current'
       current = HTTParty.get('http://worldcup.sfg.io/matches/current')
 
       if current.empty?
-        m.reply 'No active matches currently'
+        m.reply 'No World Cup matches going on now'
+      else
+        m.reply 'Current World Cup matches going on now:'
+
+        current.each do |match|
+          m.reply match_output(match)
+        end
       end
     end
+  end
+
+  def match_output(match)
+    out  = "##{match['match_number']} - "
+    out += "#{match['home_team']['country']} (#{match['home_team']['code']}) vs. #{match['away_team']['country']} (#{match['away_team']['code']}) "
+    out += "in #{match['location']} "
+    out += "- Score: #{match['home_team']['goals']}-#{match['away_team']['goals']}" if match['status'] != 'future'
+
+    out
   end
 end
