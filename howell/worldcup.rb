@@ -8,8 +8,12 @@ module Howell
 
       m.reply "Today's World Cup matches:"
 
-      today.each do |match|
-        m.reply match_output(match)
+      if today.empty?
+        m.reply 'No World Cup matches going on today'
+      else
+        today.each do |match|
+          m.reply match_output(match)
+        end
       end
     when 'current'
       current = HTTParty.get('http://worldcup.sfg.io/matches/current')
